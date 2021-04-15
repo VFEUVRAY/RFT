@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nouveau joueur</title>
+    <meta charset='utf-8'>
+  </head>
+  
+  
+    <body>  
+        <form action="" method="get" class="form-example" id="new-player-form">
+
+        <label for="name">Nom du joueur:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <input type="submit" onclick="validateNewPlayer()" value="Valider">
+
+        </form>
+
+
+        <script>
+            function validateNewPlayer() {
+
+            var joueur=document.getElementById("name").value;
+
+            google.script.run.addNewPlayer(joueur);
+        }
+        </script>
+
+    </body>
+</html>

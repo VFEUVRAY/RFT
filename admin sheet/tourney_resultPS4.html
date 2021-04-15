@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="" method="get" class="form-example" id="tournament-result-form">
+
+<label for="name">Nom du joueur:</label>
+  <input type="text" id="name" name="name" required>
+
+<br><br>
+
+<label for="tournament-name">Nom du tournoi:</label>
+  <input type="text" id="tournament-name" name="tournament-name" required>
+
+<br><br>
+
+<label for="tournament-link">Challonge/Smashgg si existant:</label>
+  <input type="text" id="tournament-link" name="tournament-link" >
+
+<br><br>
+
+
+Type de tournoi:
+  <input type="radio" id="EU" name="tournament-type" value="EU" required>
+  <label for="EU">EU</label>
+  <input type="radio" id="FR" name="tournament-type" value="FR" required>
+  <label for="FR">FR</label>
+  
+  <br><br>
+
+  <label for="classement">Classement:</label>
+  <select id="classement" name="classement" required>
+    <option value="7">7/8ème</option>
+    <option value="5">5/6ème</option>
+    <option value="4">4ème</option>
+    <option value="3">3ème</option>
+    <option value="2">2ème</option>
+    <option value="1">1er</option>
+    
+  </select>
+  
+  <br><br>
+  
+  <input type="submit" onclick="validateTournamentResultPS4()">
+</form>
+
+<script>
+function validateTournamentResultPS4()
+{
+var joueur = document.getElementById("name").value;
+var tournament_name = document.getElementById("tournament-name").value;
+var tournament_link = document.getElementById("tournament-link").value;
+var tournament_type;
+
+if (document.getElementById('EU').checked) {
+  tournament_type = 'EU';
+}
+else {
+  tournament_type = 'FR';
+}
+
+
+var list = document.getElementById("classement");
+var classement = list.options[list.selectedIndex].value;
+
+
+
+google.script.run.tournamentMain(joueur,tournament_name,tournament_link,tournament_type,classement,"PS4");
+
+}
+
+
+</script>
+
+</body>
+</html>

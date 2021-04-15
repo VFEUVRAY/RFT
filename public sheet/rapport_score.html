@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rapport scores</title>
+    <meta charset='utf-8'>
+</head>
+
+
+<body>
+    <form action="" method="get" class="form-example" id="report-form">
+
+        <p style=" top: 50px; text-align: center;">Entrer le score du défi</p>
+
+        <p style="padding-left: 165px; position: absolute; top: 50px;">Joueur 1</p>
+
+        <p style="position: absolute; padding-left: 370px; top: 50px;">Joueur 2</p>
+
+        <input id="joueur1" style="position: absolute; top: 100px; left: 125px;" type="text" oninput="limCheck(this)"
+            onkeydown="enableButton()" name="entry.1369877377" required />
+
+        <input id="joueur2" style="position: absolute; top: 100px; left: 330px;" type="text" oninput="limCheck(this)"
+            onkeydown="enableButton()" name="entry.482376595" required />
+
+        <p style="padding-left: 165px; position: absolute; top: 125px;">Score J1</p>
+
+        <p style="position: absolute; padding-left: 370px; top: 125px;">Score J2</p>
+
+        <input id="score1" style="position: absolute; top: 175px; left: 125px;" type="text" oninput="down()"
+            onkeydown="enableButton()" name="entry.733505665" required />
+
+        <input id="score2" style="position: absolute; top: 175px; left: 330px;" type="text" oninput="down()"
+            onkeydown="enableButton()" name="entry.1471318961" required />
+
+        <input id="valider" type="submit" onclick="checkValues()" value="Valider"
+            style="margin-top:200px; margin-left:165px; padding-left:100px;padding-right:100px; padding-top:10px; padding-bottom:10px;"
+            disabled>
+
+    </form>
+
+
+    <script>
+
+        function down() {
+            var regex = /^\d*$/;
+
+            var s_check = 0;
+
+            noLetters(document.getElementById("score2"));
+            noLetters(document.getElementById("score1"));
+            var s1 = document.getElementById("score1").value;
+            var s2 = document.getElementById("score2").value;
+        }
+
+        function noLetters(pos) {
+            var regex = /^\d*$/;
+            if (!regex.test(pos.value) || +pos.value > 10) {
+                if (pos.hasOwnProperty("oldValue")) {
+                    pos.value = pos.oldValue;
+                    return (0);
+                }
+                pos.value = "";
+                return (0);
+            }
+            pos.oldValue = pos.value;
+            enableButton()
+            return (1);
+        }
+
+        function limCheck(name) {
+            if (name.value.length > 30) {
+                if (name.hasOwnProperty("oldValue")) {
+                    name.value = name.oldValue;
+                    return (0);
+                }
+                name.value = "";
+                document.getElementById("valider").disabled = true;
+                return (0);
+            }
+            name.oldValue = name.value;
+            enableButton()
+            return (1);
+        }
+
+        function enableButton() {
+            var j1 = document.getElementById("joueur1").value;
+            var j2 = document.getElementById("joueur2").value;
+            var s1 = document.getElementById("score1").value;
+            var s2 = document.getElementById("score2").value;
+            var button = document.getElementById("valider");
+
+            if (s1 == "" || s2 == "" || j1 == "" || j2 == "") {
+                button.disabled = true;
+                return (0);
+            }
+            if ((+s1) != 10 && (+s2) != 10) {
+                button.disabled = true;
+                return (0);
+            }
+            if ((+s1) == 10 && (+s2) == 10) {
+                button.disabled = true;
+                return (0);
+            }
+            button.disabled = false;
+        }
+
+        function checkValues() {
+
+            var joueur1 = document.getElementById("joueur1").value;
+            var joueur2 = document.getElementById("joueur2").value;
+            var score1 = document.getElementById("score1").value;
+            var score2 = document.getElementById("score2").value;
+
+            google.script.run.checkEntries(joueur1, joueur2, score1, score2);
+
+
+        }
+    </script>
+
+</body>
+
+</html>
