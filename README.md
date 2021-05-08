@@ -1,5 +1,5 @@
 # RFT
-Online Ladder for French tekken players via Automated Google Sheet
+Online Ladder for French tekken players via Automated Google Sheet 
 
 https://docs.google.com/spreadsheets/d/1u9TOjc0ulg28pmYr4MwY9Jg4lAeAhOVeQ09JgOnehhA/edit?usp=sharing
 
